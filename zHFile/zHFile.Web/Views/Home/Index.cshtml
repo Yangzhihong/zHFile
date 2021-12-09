@@ -1,8 +1,158 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
+@section styles
+{
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.0/jquery.contextMenu.min.css" />
+<link rel="stylesheet" href="~/lib/fileinput/css/fileinput.css" />
+<link rel="stylesheet" href="~/lib/fileinput/themes/explorer-fa/theme.css" />
+}
+@section Scripts
+{
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.0/jquery.contextMenu.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.0/jquery.ui.position.min.js"></script>
+<script src="~/lib/fileinput/js/fileinput.js"></script>
+<script src="~/lib/fileinput/themes/explorer-fa/theme.js"></script>
+<script src="~/js/resource.js"></script>
+}
+<div class="container">   
+    <div class="main-content main-content-common-style">        
+        <div id="resource" class="res-wrap" v-cloak>
+            <div class="res-header d-flex justify-content-between">
+                <nav class="d-flex align-items-center" aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-slash no-p no-m">
+                        <li v-for="(folder, key) in subFolder" class="breadcrumb-item" v-if="key !== subFolder.length-1"><a href="javascript:void(0);" v-on:click="cuToDir(folder,key)"><i :class="folder.ioncls"></i> {{ folder.name }}</a></li>
+                        <li v-else class="breadcrumb-item active" aria-current="page"><i :class="folder.ioncls"></i> {{ folder.name }}</li>
+                    </ol>
+                </nav>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="search-bar">
+                        <input id="searchInput" type="text" name="searchtext" placeholder="Search Resources" v-on:keyup.enter="searchfile">
+                        <button type="button" v-on:click="searchfile()"></button>
+                    </div>
+                    <div class="change-view d-flex align-items-center">
+                        <span :class="{ current: listView }" v-on:click="listView = true"><i class="glyphicon glyphicon-th-large"></i></span>
+                        <span>&nbsp;</span>
+                        <span :class="{ current: !listView }" v-on:click="listView = false"><i class="glyphicon glyphicon-th-list"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="res-body">
+                <ul class="res-list d-flex" v-if="listView">
+                    <li class="res-item" v-for="file in files" :data-path="file.path" :data-extension="file.extension" :filename="file.filename" v-on:click="toDir(file)">
+                        <div class="no-m"><i :class="gettypeicon(file)"></i></div>
+                        <h6 class="no-m"><a href="javascript:;" :title="file.filename" v-html="formatkeys(file.filename)"></a></h6>
+                    </li>
+                </ul>
+                <table class="res-list-table table" v-else>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>UpdateTime</th>
+                            <th>CreateTime</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="file in files">
+                            <td>
+                                <a href="javascript:void(0)" class="fileitem" v-on:click="toDir(file)" :data-path="file.path" :data-extension="file.extension" :filename="file.filename">
+                                    <span v-if="file.extension == 'folder'"><i class="zmdi zmdi-folder"></i>&nbsp;&nbsp;</span>
+                                    <strong v-html="formatkeys(file.filename)"></strong>
+                                </a>
+                            </td>
+                            <td>{{ file.size == 'folder' ? '-' : file.size }}</td>
+                            <td>{{ formatDate(file.updatetime) }}</td>
+                            <td>{{ formatDate(file.createtime) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="loading" v-if="showLoading">
+                <div class="wrap">
+                    <div class="loading-img"></div>
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="AddfolderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog modal-md animated zoomIn animated-3x" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title color-primary" id="myModalLabel">Add New Folder</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="zmdi zmdi-close"></i></span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group row">
+                                <label for="plan-name" class="col-lg-4 control-label no-p">New Folder Name:</label>
+                                <div class="col-lg-8">
+                                    <input type="text" autocomplete="false" class="form-control" id="folder-name">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="AddNewFolder();">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+        <div class="modal fade" id="RenameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog modal-md animated zoomIn animated-3x" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title color-primary">RENAME</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="zmdi zmdi-close"></i></span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group row">
+                                <label for="plan-name" class="col-lg-4 control-label no-p">Name:</label>
+                                <div class="col-lg-8">
+                                    <input type="text" autocomplete="false" class="form-control" id="New-name">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="ReName();">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel">
+            <div class="modal-dialog modal-lg animated zoomIn animated-3x" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title color-primary" id="inputModalLabel">Upload File</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="zmdi zmdi-close"></i></span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="fileform">
+                            <input type="hidden" name="currentPath" id="currentPath" />
+                            <div class="form-group row mt-1">
+                                <label for="inputFile" class="col-lg-2 control-label mb-1">File:</label>
+
+                                <div class="col-lg-10">
+                                    <input type="file" id="file" name="file">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn  btn-primary" onclick="uploadfile();">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+

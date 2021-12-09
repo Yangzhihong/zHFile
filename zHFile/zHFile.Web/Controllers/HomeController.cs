@@ -15,10 +15,16 @@ namespace zHFile.Web.Controllers
 
         public IActionResult Index()
         {
+            Request.File
             return View();
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult About()
         {
             return View();
         }

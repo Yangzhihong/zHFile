@@ -6,4 +6,82 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Helpers\ZipHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\favicon.ico" />
+    <None Include="wwwroot\lib\fileinput\js\fileinput.js" />
+    <None Include="wwwroot\lib\fileinput\js\fileinput.min.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\ar.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\az.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\bg.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\ca.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\cr.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\cs.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\da.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\de.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\el.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\es.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\et.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\fa.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\fi.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\fr.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\gl.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\he.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\hu.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\id.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\it.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\ja.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\ka.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\kr.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\kz.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\LANG.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\lt.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\lv.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\nl.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\no.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\pl.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\pt-BR.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\pt.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\ro.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\ru.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\sk.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\sl.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\sr-latn.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\sv.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\th.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\tr.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\uk.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\uz-cyrl.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\uz.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\vi.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\zh-TW.js" />
+    <None Include="wwwroot\lib\fileinput\js\locales\zh.js" />
+    <None Include="wwwroot\lib\fileinput\js\plugins\piexif.js" />
+    <None Include="wwwroot\lib\fileinput\js\plugins\piexif.min.js" />
+    <None Include="wwwroot\lib\fileinput\js\plugins\sortable.js" />
+    <None Include="wwwroot\lib\fileinput\js\plugins\sortable.min.js" />
+    <None Include="wwwroot\lib\fileinput\themes\bs5\theme.js" />
+    <None Include="wwwroot\lib\fileinput\themes\bs5\theme.min.js" />
+    <None Include="wwwroot\lib\fileinput\themes\explorer-fas\theme.js" />
+    <None Include="wwwroot\lib\fileinput\themes\explorer-fas\theme.min.js" />
+    <None Include="wwwroot\lib\fileinput\themes\explorer-fa\theme.js" />
+    <None Include="wwwroot\lib\fileinput\themes\explorer-fa\theme.min.js" />
+    <None Include="wwwroot\lib\fileinput\themes\explorer\theme.js" />
+    <None Include="wwwroot\lib\fileinput\themes\explorer\theme.min.js" />
+    <None Include="wwwroot\lib\fileinput\themes\fas\theme.js" />
+    <None Include="wwwroot\lib\fileinput\themes\fas\theme.min.js" />
+    <None Include="wwwroot\lib\fileinput\themes\fa\theme.js" />
+    <None Include="wwwroot\lib\fileinput\themes\fa\theme.min.js" />
+    <None Include="wwwroot\lib\fileinput\themes\gly\theme.js" />
+    <None Include="wwwroot\lib\fileinput\themes\gly\theme.min.js" />
+    <None Include="wwwroot\logo.png" />
+  </ItemGroup>
+
 </Project>

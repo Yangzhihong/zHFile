@@ -17,6 +17,7 @@ C:\工作\Zhihong.zHFile\zHFile\zHFile.Web\obj\Debug\net6.0\zHFile.Web.RazorAsse
 C:\工作\Zhihong.zHFile\zHFile\zHFile.Web\obj\Debug\net6.0\zHFile.Web.RazorAssemblyInfo.cs
 C:\工作\Zhihong.zHFile\zHFile\zHFile.Web\obj\Debug\net6.0\staticwebassets.build.json
 C:\工作\Zhihong.zHFile\zHFile\zHFile.Web\obj\Debug\net6.0\staticwebassets.development.json
+C:\工作\Zhihong.zHFile\zHFile\zHFile.Web\obj\Debug\net6.0\scopedcss\Views\Home\Index.cshtml.rz.scp.css
 C:\工作\Zhihong.zHFile\zHFile\zHFile.Web\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\工作\Zhihong.zHFile\zHFile\zHFile.Web\obj\Debug\net6.0\scopedcss\bundle\zHFile.Web.styles.css
 C:\工作\Zhihong.zHFile\zHFile\zHFile.Web\obj\Debug\net6.0\scopedcss\projectbundle\zHFile.Web.bundle.scp.css
